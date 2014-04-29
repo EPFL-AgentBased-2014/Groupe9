@@ -29,7 +29,7 @@ if (ticks = Temps-d-une-annee) [
       [set pcolor couleurbase]
     set pcolor couleurbase -(couleurbase - pcolor) * 0.5 ; les champs reprennent leur état initial
   ]
-<<<<<<< HEAD
+
   clear-turtles
   create-turtles number-of-bees * 0.5 
   ask turtles [
@@ -211,7 +211,7 @@ number-of-bees
 number-of-bees
 0
 500
-<<<<<<< HEAD
+
 40
 =======
 170
@@ -257,7 +257,7 @@ bug-reproduce
 bug-reproduce
 0
 10
-<<<<<<< HEAD
+
 4
 =======
 9
@@ -278,7 +278,7 @@ x pour 1000
 1
 
 PLOT
-<<<<<<< HEAD
+
 850
 135
 1128
@@ -300,7 +300,7 @@ Bees
 0.0
 10.0
 true
-<<<<<<< HEAD
+
 false
 "" ""
 PENS
