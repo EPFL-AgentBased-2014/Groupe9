@@ -29,11 +29,16 @@ if (ticks = Temps-d-une-annee) [
       [set pcolor couleurbase]
     set pcolor couleurbase -(couleurbase - pcolor) * 0.5 ; les champs reprennent leur état initial
   ]
+<<<<<<< HEAD
   clear-turtles
   create-turtles number-of-bees * 0.5 
   ask turtles [
    layout-circle turtles 1 ; juste pour mettre toutes les abeilles au centre 
        
+=======
+  ask turtles [
+   layout-circle turtles 1 ; juste pour mettre toutes les abeilles au centre 
+>>>>>>> origin/Graphes
   ]
   reset-ticks
 ]
@@ -206,7 +211,11 @@ number-of-bees
 number-of-bees
 0
 500
+<<<<<<< HEAD
 40
+=======
+170
+>>>>>>> origin/Graphes
 10
 1
 NIL
@@ -248,7 +257,11 @@ bug-reproduce
 bug-reproduce
 0
 10
+<<<<<<< HEAD
 4
+=======
+9
+>>>>>>> origin/Graphes
 1
 1
 NIL
@@ -265,6 +278,7 @@ x pour 1000
 1
 
 PLOT
+<<<<<<< HEAD
 850
 135
 1128
@@ -272,15 +286,50 @@ PLOT
 Nombre d'abeilles
 time
 Number of beee
+=======
+768
+66
+1353
+383
+plot 1
+Ticks
+Bees
+>>>>>>> origin/Graphes
 0.0
 10.0
 0.0
 10.0
 true
+<<<<<<< HEAD
 false
 "" ""
 PENS
 "default" 1.0 0 -16777216 true "" "plot count turtles"
+=======
+true
+"" ""
+PENS
+"default" 1.0 0 -7171555 true "" "plot count turtles"
+
+PLOT
+768
+384
+1354
+650
+plot 2
+Ticks
+Virgin Patches
+0.0
+10.0
+0.0
+10.0
+true
+true
+"" ""
+PENS
+"default" 1.0 0 -8330359 true "" "plot count patches with [pcolor = 67]"
+"pen-1" 1.0 0 -15575016 true "" "plot count patches with [pcolor = 62]"
+>>>>>>> origin/Graphes
 
 @#$#@#$#@
 ## WHAT IS IT?
