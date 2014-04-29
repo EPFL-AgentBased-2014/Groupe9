@@ -25,7 +25,7 @@ to go
   tick
 if (ticks = Temps-d-une-annee) [
   ask patches [
-    set pcolor couleurbase -(coleurbase - pcolor) *0.5 ; les champs reprennent leur état initial
+    set pcolor couleurbase ; les champs reprennent leur état initial
   ]
   ask turtles [
    layout-circle turtles 1 ; juste pour mettre toutes les abeilles au centre 
@@ -43,7 +43,6 @@ to move-bug
     ]
   ]
 end
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
