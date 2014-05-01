@@ -1,98 +1,215 @@
-;globals
-;[bug]
+;Structre 
+;Intrdouction/ interet de recherche
+;Objectifs et hypothèses
+;Methodes et prodedures
+;Resultats
+;Discussion et conclusion
 
-turtles-own [energy]
+breed [bees bee]
+breed  [bugs bug]
+turtles-own [energy] 
+globals [rendement nbreannee gain gaintotal gainan-1 gainan-2 gainan-3 gainan-4]
+
+;le bouton recolor a été desactivé !!!!!!!!!!! (edit pour reactiver)
+
+to-report count-gain
+  set gain (count (patches with [pcolor >= 62 and pcolor < 63 ]) * 100 ; cases très polénisées 
+   + count (patches with [pcolor >= 63 and pcolor < 64 ]) * 80
+   + count (patches with [pcolor >= 64 and pcolor < 65 ]) * 60
+   + count (patches with [pcolor >= 65 and pcolor < 66 ]) * 40
+   + count (patches with [pcolor >= 66 and pcolor < 67 ]) * 20 ; cases le moins polénisées
+   ; les cases non polénisées ne rapportent rien
+   + count (patches with [pcolor = 15 ]) * 50 ; cas des cases poison)
+   )
+  report gain
+end
+
+to count-rendement ; rendement au bout d'un certain nombre d'annee
+  set nbreannee (nbreannee + 1)
+  set gainan-4 gainan-3
+  set gainan-3 gainan-2 
+  set gainan-2 gainan-1
+  set gainan-1 gain   
+ ifelse (nbreannee >= 5) [ 
+ set gaintotal (count-gain + gainan-1 + gainan-2 + gainan-3 + gainan-4)
+  set rendement ( gaintotal ) / 5
+  ] [ 
+  set rendement count-gain 
+  ]
+  
+end 
+
+to print-rendement
+  print rendement
+end
 
 to setup
   clear-all
   
-  ;;set default bee
   set-default-shape turtles "bee" ; change la forme des turtles en abeilles
-
-  create-turtles number-of-bees
-  [
-    set energy 0
+  create-bees number-of-bees [setxy random-xcor random-ycor set size 0.9 set energy 3]
+  layout-circle bees 1
+  set-default-shape turtles "bug"
+  create-bugs number-of-bees [setxy random-xcor random-ycor set size 0.9 set color 11]
+  layout-circle bugs 20
+   ask bugs [  ; les insectes sont sensible au poison au début
+    if random 100 < poison-diffuse[
+    die
     ]
-
-
-  [ set size 0.8] ; on réduit un peu la taille des abeilles
-  layout-circle turtles 1 ; juste pour mettre toutes les abeilles au centre 
- 
+   ]
+   
   ask patches [
-    set pcolor couleurbase ; les champs reprennent leur état initial
+   set pcolor couleurbase
   ]
-  
+ 
   reset-ticks ; compteur d'iterations a 0
-  
 end
 
 to go
-  move-bug
   tick
-if (ticks = Temps-d-une-annee) [
-  ask patches [
-    set pcolor couleurbase ; les champs reprennent leur état initial
+  move-bees
+  move-bugs
+  
+if (ticks = Temps-d-une-annee) [ ; fait un reset partiel au bout d'une annee 
+   count-rendement ;; calcul le rendement 
+   update-and-plot-total
+   update-and-plot-rendement
+   ask patches [
+    if not (pcolor = 15)[
+      if not (pcolor = 67) [
+        set pcolor couleurbase -(couleurbase - pcolor) * 0.5 ;; les champs reprennent leur état initial mais gardent un peu en memoire l'etat de l'année precedente
+      ]
+    ]
   ]
-  ask turtles [
-   layout-circle turtles 1 ; juste pour mettre toutes les abeilles au centre 
-  ]
+  clear-turtles ; supprime toutes les turtles
+  set-default-shape turtles "bee" ; change la forme des turtles en abeilles
+  create-bees number-of-bees [setxy random-xcor random-ycor set size 0.9 set energy 3]
+  layout-circle bees 1
+  set-default-shape turtles "bug"
+  create-bugs number-of-bees [setxy random-xcor random-ycor set size 0.9 set color 11]
+  layout-circle bugs 20
+  ask bugs [  ; les insectes sont sensible au poison au début
+    if random 100 < poison-diffuse[
+    die
+    ]
+   ]
   reset-ticks
-]
+  ]
 end
 
-to move-bug
-  ask turtles [
+to update-and-plot-total ; modifie le graphe total value en affichant le gain à la fin d'une année
+    set-current-plot "Gain total chaque année"
+    plot count-gain
+end
+
+to update-and-plot-rendement ; modifie le graphe total value en affichant le gain à la fin d'une année
+    count-rendement
+    set-current-plot "rendement"
+    ;if (ticks >= Temps-d-une-annee) [ 
+    plot rendement 
+    ;]
+end
+
+
+to move-bees ; bees procedure
+  ask bees [
     right random 360
     forward 1
-    if not(pcolor = 62) [
-    set pcolor  pcolor  - 0.5
+    if not(pcolor <= 62) [
+      set pcolor  pcolor  - 3
     ]
+
+    reproducebug
+  ]
+   life-bees
+end
+
+to life-bees ; bees procedure
+   ask bees [
+   if random-exponential (poison-diffuse * poison-diffuse ) < 10000 [
+     set energy (energy - poison-diffuse * 0.005) 
+   if energy <= 0[
+     die 
+    ]
+   ]
+  ]
+  
+  ask bees with [pcolor = 15] [
+    if (energy - 1) <= 0[
+      die
+    ]
+    set energy (energy - 1)
   ]
 end
 
-
-;; BEE procedures chemical products
-
-ifelse chemicals? [
-ask patches
-[ifelse containsChemicals?
-  [pollute-bees-f]
-  [feed-bees-f]
-  ]]
-
-to pollute-bees-f
-  
-  ;;lower energy level
-  
-to feed-bees-f
-   
-   ;;lift energy level
-
-
-
-
- ;;Rabbits procedures
-  ifelse grass-effect? [
-    ask rabbits [
-      reproduce-r-grass
-      if eat-grass? [
-        eat-grass
-        ]
-      ]
-    ] [
-    ask rabbits [
-      reproduce-r
-      ]
+to move-bugs ; bugs procedure
+  ask bugs [
+    set heading towardsxy 0 0
+    right random 180
+    left random 180    
+    forward 1 
+    if not(pcolor >= 68) and (pcolor != 15) [ ; si un insecte marche sur une case qui n'est pas du poison 
+       set pcolor  pcolor  + 1.2 ; il détériore le champs
     ]
+    life-bug
+    reproducebug
+  ]
+end
+
+to life-bug ; bug procedure
+  ask turtles with [pcolor = 15] [
+    die 
+  ]
+end
+
+to poison ; observer procedure poison ajouté à la main
+    let edge 13
+    let beg -13
+        
+       ask patches[
+    ;; if patches are between (0,0) to (0,edge)...
+    if ( pxcor = beg and pycor >= beg and pycor <= edge )
+      [set pcolor 15]                                 ;; ... draws left edge in red
+    ;; if patches are between (edge,0) to (edge,edge)...
+    if ( pxcor = edge and pycor >= beg and pycor <= edge )
+      [set pcolor 15]                                 ;; ... draws right edge in red
+    ;; if patches are between (0,0) to (edge,0)...
+    if ( pycor = beg and pxcor >= beg and pxcor <= edge )
+      [set pcolor 15]                                 ;; ... draws bottom edge in red
+    ;; if patches are between (0,edge) to (edge,edge)...
+    if ( pycor = edge and pxcor >= beg and pxcor <= edge )
+      [set pcolor 15]                                 ;; ... draws upper edge in red
+    ]
+       
+end
+   
+   ;while [mouse-down?] [ask patch mouse-xcor mouse-ycor [
+    ;  ifelse (pcolor != 15) [
+     ;   set pcolor 15 
+      ;  ][  
+       ; set pcolor 67
+        ;]
+      ;] 
+    ;wait 0.1
+    ;display 
+    ;]
+;end
+
+
+to reproducebug  ; turtle procedure; dans une année complète les abeilles/insectes peuvent se reproduire un peu
+  if random-float 1000 < bug-reproduce [  ; 
+    hatch 1 [ rt random-float 360]  ;
+  ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
-10
-649
-470
-16
-16
-13.0
+235
+15
+709
+510
+20
+20
+11.33333333333334
 1
 10
 1
@@ -102,10 +219,10 @@ GRAPHICS-WINDOW
 1
 1
 1
--16
-16
--16
-16
+-20
+20
+-20
+20
 0
 0
 1
@@ -113,10 +230,10 @@ ticks
 30.0
 
 BUTTON
-36
-41
-100
-74
+17
+20
+81
+53
 Setup
 setup
 NIL
@@ -130,10 +247,10 @@ NIL
 1
 
 INPUTBOX
-38
-306
-193
-366
+928
+493
+1083
+553
 couleurbase
 67
 1
@@ -141,27 +258,10 @@ couleurbase
 Color
 
 BUTTON
-39
-269
-109
-302
-recolor
-set pcolor couleurbase
-NIL
-1
-T
-PATCH
-NIL
-NIL
-NIL
-NIL
-1
-
-BUTTON
-108
-87
-171
-120
+90
+66
+153
+99
 Go
 go
 T
@@ -175,10 +275,10 @@ NIL
 1
 
 BUTTON
-35
-87
-98
-120
+17
+66
+80
+99
 Go
 go
 NIL
@@ -192,68 +292,229 @@ NIL
 1
 
 SLIDER
-12
-134
-201
-167
+15
+128
+214
+161
 Temps-d-une-annee
 Temps-d-une-annee
 0
-100
 50
+33
 1
 1
 mois
 HORIZONTAL
 
 SLIDER
-13
-188
-185
-221
+15
+168
+214
+201
 number-of-bees
 number-of-bees
 0
 500
-230
+180
 10
 1
 NIL
 HORIZONTAL
 
-SWITCH
-671
+BUTTON
+13
+333
+80
+366
+Poison
+poison
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+TEXTBOX
+91
+333
+241
+389
+Vous pouvez liberer du poison sur une case qui tuera les insectes et qui fera mal aux abeilles. \n
+11
+0.0
+1
+
+SLIDER
+15
+208
+214
+241
+bug-reproduce
+bug-reproduce
+0
 10
-795
-43
-chemicals?
-chemicals?
 1
 1
--1000
+1
+NIL
+HORIZONTAL
+
+TEXTBOX
+153
+241
+220
+274
+x pour 1000
+11
+0.0
+1
+
+MONITOR
+763
+21
+823
+66
+Bees
+count bees
+17
+1
+11
+
+PLOT
+830
+21
+1083
+141
+Nombre abeilles et insectes
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+true
+"" ""
+PENS
+"Abeilles" 1.0 0 -1184463 true "" "plot count bees"
+"Insectes" 1.0 0 -955883 true "" "plot count bugs"
+
+PLOT
+772
+175
+1133
+321
+Gain total chaque année
+NIL
+NIL
+0.0
+10.0
+25000.0
+75000.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" ""
+
+PLOT
+773
+330
+1133
+480
+Rendement
+NIL
+NIL
+0.0
+10.0
+25000.0
+75000.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" ";plot rendement"
+
+MONITOR
+764
+78
+824
+123
+Insectes
+count bugs
+17
+1
+11
+
+SLIDER
+24
+282
+223
+315
+Poison-diffuse
+Poison-diffuse
+0
+100
+0
+1
+1
+NIL
+HORIZONTAL
+
+BUTTON
+6
+372
+90
+406
+Reset poison
+ask patches with [pcolor = 15] [set pcolor 67]
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+MONITOR
+9
+421
+98
+466
+Red patches
+count patches with [pcolor = 15]
+17
+1
+11
 
 @#$#@#$#@
-## WHAT IS IT?
+## WHAT IS IT? Qu'est ce que ce modèle ?
 
 (a general understanding of what the model is trying to show or explain)
 
-## HOW IT WORKS
+## HOW IT WORKS Comment fonctionne-t-il ?
 
 (what rules the agents use to create the overall behavior of the model)
-
-## HOW TO USE IT
+ 
+## HOW TO USE IT Comment l'utiliser ?
 
 (how to use the model, including a description of each of the items in the Interface tab)
 
-## THINGS TO NOTICE
+## THINGS TO NOTICE Qu'est ce qu'observer ?
 
 (suggested things for the user to notice while running the model)
 
-## THINGS TO TRY
+## THINGS TO TRY A essayer
 
 (suggested things for the user to try to do (move sliders, switches, etc.) with the model)
 
-## EXTENDING THE MODEL
+## EXTENDING THE MODEL Comment pourrait-on modifier, completer le modèle ?
 
 (suggested things to add or change in the Code tab to make the model more complicated, detailed, accurate, etc.)
 
@@ -261,11 +522,11 @@ chemicals?
 
 (interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)
 
-## RELATED MODELS
+## RELATED MODELS Modèles liés
 
 (models in the NetLogo Models Library and elsewhere which are of related interest)
 
-## CREDITS AND REFERENCES
+## CREDITS AND REFERENCES 
 
 (a reference to the model's URL on the web if it has one, as well as any other necessary credits, citations, and links)
 @#$#@#$#@
@@ -604,6 +865,26 @@ NetLogo 5.0.5
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
+<experiments>
+  <experiment name="experiment" repetitions="200" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="100"/>
+    <metric>count bees</metric>
+    <metric>count bugs</metric>
+    <metric>report rendement</metric>
+    <steppedValueSet variable="bug-reproduce" first="5" step="1" last="9"/>
+    <enumeratedValueSet variable="Temps-d-une-annee">
+      <value value="48"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-bees">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="couleurbase">
+      <value value="67"/>
+    </enumeratedValueSet>
+  </experiment>
+</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
