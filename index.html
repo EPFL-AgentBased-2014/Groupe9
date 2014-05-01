@@ -39,9 +39,9 @@
 <h1>
 <a name="introduction--int%C3%A9r%C3%AAt-de-la-recherche" class="anchor" href="#introduction--int%C3%A9r%C3%AAt-de-la-recherche"><span class="octicon octicon-link"></span></a>Introduction / Intérêt de la recherche</h1>
 
-<p>Ce modèle étudie l’influence d’un insecticide sur le rendement d’un champ parcouru par des insectes et des abeilles. Celui-ci produit des fleurs, et cherche un rendement maximal. Les abeilles sont les actrices principales permettant la pollinisation des fleurs qui sont en revanche détruites par des insectes. Pour cela on utilise de l'insecticide. Malheureusement ce produit chimique a une influence  néfaste sur les abeilles et par conséquent aussi sur le rendement du champ. </p>
+<p>Ce modèle étudie l’influence d’un insecticide sur le gain d'une récolte pour champ parcouru par des insectes et des abeilles. Les abeilles sont les actrices principales permettant la pollinisation des fleurs qui sont en revanche détruites par des insectes. Pour cela on utilise de l'insecticide. Ce produit chimique a une influence néfaste sur les abeilles et par conséquent aussi sur le gain d'une récolte.</p>
 
-<p>Le développement de notre modèle se déroule sur plusieurs années. Après chaque année, le champ conserve en mémoire en partie son état de l'année précédente, le nombre d'abeilles et d'insectes est alors réinitialisé à un nombre prédéfini.</p>
+<p>Le développement de notre simulation se déroule sur plusieurs années. Après chaque année, le champ conserve en mémoire en partie son état de l'année précédente, le nombre d'abeilles et d'insectes est alors réinitialisé à un nombre prédéfini.</p>
 
 <h1>
 <a name="objectifs-et-hypoth%C3%A8ses" class="anchor" href="#objectifs-et-hypoth%C3%A8ses"><span class="octicon octicon-link"></span></a>Objectifs et hypothèses</h1>
@@ -57,7 +57,7 @@ Ce gain potentiel subit l’influence des éléments mobiles que sont deux types
 </ul><p>Les agents « abeilles » sont aussi affectés par le poison qui diminue leur énergie et par conséquent leur vie. Elles meurent si elles n’ont plus assez d’énergie.
 Les insectes peuvent mourir au début d’une année en fonction du taux d’insecticide. Nous pouvons modifier le taux d'insecticide à notre guise. </p>
 
-<p>Dans notre modèle, nous ne traitons pas des liens entre les agents. Ainsi, la distance entre les agents n’a aucune influence particulière sur le rendement du champ.</p>
+<p>Dans notre modèle, nous ne traitons pas des liens entre les agents. Ainsi, la distance entre les agents n’a aucune influence particulière sur le gain moyen.</p>
 
 <h1>
 <a name="m%C3%A9thodes-et-proc%C3%A9dures" class="anchor" href="#m%C3%A9thodes-et-proc%C3%A9dures"><span class="octicon octicon-link"></span></a>Méthodes et procédures</h1>
@@ -68,7 +68,7 @@ Les insectes peuvent mourir au début d’une année en fonction du taux d’ins
 
 <p>Nous avons également donner la possibilité à l'utilisateur d'ajouter manuellement une quantité de poison sur les cases-champs qui élimine directement les pucerons, mais qui contamine les abeilles et les cases-champs.</p>
 
-<p>On calcule le gain au bout d'une année comme la somme du gain de chaque case-champs. Le gain moyen est calculé comme la moyenne des gains des 5 années précédentes.</p>
+<p>On calcule le gain au bout d'une année comme la somme du gain de chaque case-champs. Nous simulons ici une récolte. Le gain moyen est calculé comme la moyenne des gains des 5 années précédentes.</p>
 
 <p><img src="https://raw.githubusercontent.com/EPFL-AgentBased-2014/Groupe9/master/Diagramme%20explicatif.jpg" alt="Diagramme explicatif du modèle"></p>
 
@@ -77,7 +77,7 @@ Les insectes peuvent mourir au début d’une année en fonction du taux d’ins
 
 <p><img src="https://raw.githubusercontent.com/EPFL-AgentBased-2014/Groupe9/master/Graphe-gain-poison.jpg" alt=""></p>
 
-<p>Nous avons premièrement pu constater qu'avec ce modèle le gain moyen dépend surtout de la concentration d’insecticide épandu. Notre modèle tend à montrer qu'un épandage maximal sera le plus bénéfique. 
+<p>Nous avons premièrement pu constater qu'avec ce modèle le gain moyen dépend surtout de la concentration d’insecticide épandu. Nos simulations tendent à montrer qu'un épandage maximal sera le plus bénéfique. 
 L'effet positif des abeilles est plus élevé que l'effet négatif des pucerons.
 En revanche, la progression du gain moyen n'est pas linéaire. 
 Nous avons remarqué un maxima local au environ de 15% de concentration de poison.</p>
