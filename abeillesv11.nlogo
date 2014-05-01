@@ -300,7 +300,7 @@ Temps-d-une-annee
 Temps-d-une-annee
 0
 50
-33
+50
 1
 1
 mois
@@ -464,23 +464,6 @@ Poison-diffuse
 1
 NIL
 HORIZONTAL
-
-BUTTON
-6
-372
-90
-406
-Reset poison
-ask patches with [pcolor = 15] [set pcolor 67]
-NIL
-1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
-1
 
 MONITOR
 9
