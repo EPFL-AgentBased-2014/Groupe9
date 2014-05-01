@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Groupe 9 by EPFL-AgentBased-2014</title>
+    <title>Les abeilles s&#39;effleurent.  by EPFL-AgentBased-2014</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -15,8 +15,8 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>Groupe 9</h1>
-        <p>Bee vs. bugs </p>
+        <h1>Les abeilles s&#39;effleurent. </h1>
+        <p>Ou comment la main de l&#39;homme et son poison ont modifiés l’environnement d&#39;insectes et abeilles </p>
 
         <p class="view"><a href="https://github.com/EPFL-AgentBased-2014/Groupe9">View the Project on GitHub <small>EPFL-AgentBased-2014/Groupe9</small></a></p>
 
@@ -39,26 +39,25 @@
 <h1>
 <a name="introduction--int%C3%A9r%C3%AAt-de-la-recherche" class="anchor" href="#introduction--int%C3%A9r%C3%AAt-de-la-recherche"><span class="octicon octicon-link"></span></a>Introduction / Intérêt de la recherche</h1>
 
-<p>Ce modèle simule l’influence d’un insecticide sur le rendement d’un champ parcouru par des insectes et des abeilles. Celui-ci produit des fleurs, et cherche un rendement maximal. Les abeilles sont les actrices principales permettant la pollinisation des fleurs qui sont en revanche détruites par des puces. C’est pourquoi on utilise des insecticides. Malheureusement ce produit chimique a une influence  néfaste sur les abeilles et par conséquent aussi sur le rendement du champ. </p>
+<p>Ce modèle étudie l’influence d’un insecticide sur le rendement d’un champ parcouru par des insectes et des abeilles. Celui-ci produit des fleurs, et cherche un rendement maximal. Les abeilles sont les actrices principales permettant la pollinisation des fleurs qui sont en revanche détruites par des insectes. Pour cela on utilise de l'insecticide. Malheureusement ce produit chimique a une influence  néfaste sur les abeilles et par conséquent aussi sur le rendement du champ. </p>
 
-<p>Le développement de notre modèle se déroule sur plusieurs années. Après chaque année, le champ conserve en mémoire en partie son état de l'année précédente, le nombre d'abeille est alors réinitialisé à l'état de l'année précédente. Nous rajoutons chaque année le même nombre d'abeilles et de puces.</p>
+<p>Le développement de notre modèle se déroule sur plusieurs années. Après chaque année, le champ conserve en mémoire en partie son état de l'année précédente, le nombre d'abeilles et d'insectes est alors réinitialisé à un nombre prédéfini.</p>
 
 <h1>
 <a name="objectifs-et-hypoth%C3%A8ses" class="anchor" href="#objectifs-et-hypoth%C3%A8ses"><span class="octicon octicon-link"></span></a>Objectifs et hypothèses</h1>
 
-<p>Nous cherchons donc ici la concentration d’insecticide optimale pour ne pas tuer trop d’abeilles tout en éliminant assez de puces.</p>
+<p>Nous cherchons la concentration d’insecticide optimale pour ne pas tuer trop d’abeilles tout en éliminant assez d'insectes. </p>
 
-<p>Notre modèle fonctionne avec des éléments fixes que sont les patches, auxquelles nous attribuons une valeur « énergie ». Le rendement est calculé comme la moyenne des gains des 5 années précédentes.
-Cette valeur subit l’influence des éléments mobiles que sont deux « breeds » d’agents : </p>
+<p>Notre modèle fonctionne avec les éléments cases-champs auxquelles nous attribuons une valeur de gain. 
+Ce gain potentiel subit l’influence des éléments mobiles que sont deux types d’agents : </p>
 
 <ul>
-<li>les abeilles qui augmentent leur valeur « énergie »  en passant sur les patches </li>
+<li>les abeilles qui augmentent leur valeur de gain en passant sur les cases</li>
 <li>les puces qui elles, diminuent leur énergie. </li>
 </ul><p>Les agents « abeilles » sont aussi affectés par le poison qui diminue leur énergie et par conséquent leur vie. Elles meurent si elles n’ont plus assez d’énergie.
-Les insectes peuvent mourir au début d’une année en fonction du taux d’insecticide.</p>
+Les insectes peuvent mourir au début d’une année en fonction du taux d’insecticide. Nous pouvons modifier le taux d'insecticide à notre guise. </p>
 
-<p>Nous pouvons jouer sur la concentration en insecticide. Celui-ci réduit l’énergie dans le champ, c'est pourquoi le rendement diminue.
-Dans notre modèle, nous ne traitons pas des liens entre les agents. Ainsi, la distance entre les agents n’a aucune influence particulière sur le rendement du champ.</p>
+<p>Dans notre modèle, nous ne traitons pas des liens entre les agents. Ainsi, la distance entre les agents n’a aucune influence particulière sur le rendement du champ.</p>
 
 <h1>
 <a name="m%C3%A9thodes-et-proc%C3%A9dures" class="anchor" href="#m%C3%A9thodes-et-proc%C3%A9dures"><span class="octicon octicon-link"></span></a>Méthodes et procédures</h1>
@@ -67,7 +66,9 @@ Dans notre modèle, nous ne traitons pas des liens entre les agents. Ainsi, la d
 
 <p>Lorsqu'une quantité maximale de poison est insérée, tous les pucerons meurent tandis que les abeilles continuent de polliniser, bien que celles-ci soient aussi affectées par le poison.</p>
 
-<p>Nous avons également donner la possibilité à l'utilisateur d'ajouter manuellement une quantité de poison sur les patches qui élimine directement les pucerons, mais qui contamine les abeilles et les patches.</p>
+<p>Nous avons également donner la possibilité à l'utilisateur d'ajouter manuellement une quantité de poison sur les cases-champs qui élimine directement les pucerons, mais qui contamine les abeilles et les cases-champs.</p>
+
+<p>On calcule le gain au bout d'une année comme la somme du gain de chaque case-champs. Le gain moyen est calculé comme la moyenne des gains des 5 années précédentes.</p>
 
 <p><img src="https://raw.githubusercontent.com/EPFL-AgentBased-2014/Groupe9/master/Diagramme%20explicatif.jpg" alt="Diagramme explicatif du modèle"></p>
 
@@ -76,15 +77,15 @@ Dans notre modèle, nous ne traitons pas des liens entre les agents. Ainsi, la d
 
 <p><img src="https://raw.githubusercontent.com/EPFL-AgentBased-2014/Groupe9/master/Graphe-gain-poison.jpg" alt=""></p>
 
-<p>Nous avons premièrement pu constater qu'avec ce modèle le rendement dépend surtout de la concentration d’insecticide épandu. Notre modèle tend à montrer qu'un épandage maximal sera le plus bénéfique. 
+<p>Nous avons premièrement pu constater qu'avec ce modèle le gain moyen dépend surtout de la concentration d’insecticide épandu. Notre modèle tend à montrer qu'un épandage maximal sera le plus bénéfique. 
 L'effet positif des abeilles est plus élevé que l'effet négatif des pucerons.
-En revanche, la progression du rendement n'est pas linéaire. 
+En revanche, la progression du gain moyen n'est pas linéaire. 
 Nous avons remarqué un maxima local au environ de 15% de concentration de poison.</p>
 
 <h1>
 <a name="discussion-et-conclusion" class="anchor" href="#discussion-et-conclusion"><span class="octicon octicon-link"></span></a>Discussion et conclusion</h1>
 
-<p>Si nous poussons le raisonnement plus loin, nous pourrions imaginer que le coût de l'ajout de 80% de poison pour un rendement similaire à l'ajout de 15% est bien supérieur et démesuré : pour un même rendement, il faut dépenser plus en insecticide, et de plus on élimine beaucoup plus d'abeilles.</p>
+<p>Dans le cadre d'une réflexion plus large, nous pourrions imaginer que le coût de l'ajout de 80% de poison pour un rendement similaire à l'ajout de 15% est bien supérieur et démesuré : pour un même rendement, il faut dépenser plus en insecticide, et de plus on élimine beaucoup plus d'abeilles.</p>
 
 <p>Nous pourrions imaginer une procédure qui limite la quantité d'insecticide. Dès lors, le modèle sera pertinent pour déterminer le rendement optimal.</p>
 
