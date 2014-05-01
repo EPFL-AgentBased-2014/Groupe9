@@ -1,33 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Groupe 9 by EPFL-AgentBased-2014</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Groupe 9 : Bee vs. bugs " />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Groupe 9</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Groupe 9</h1>
-        <p>Bee vs. bugs </p>
 
-        <p class="view"><a href="https://github.com/EPFL-AgentBased-2014/Groupe9">View the Project on GitHub <small>EPFL-AgentBased-2014/Groupe9</small></a></p>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/EPFL-AgentBased-2014/Groupe9">View on GitHub</a>
 
+          <h1 id="project_title">Groupe 9</h1>
+          <h2 id="project_tagline">Bee vs. bugs </h2>
 
-        <ul>
-          <li><a href="https://github.com/EPFL-AgentBased-2014/Groupe9/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/EPFL-AgentBased-2014/Groupe9/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/EPFL-AgentBased-2014/Groupe9">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/EPFL-AgentBased-2014/Groupe9/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/EPFL-AgentBased-2014/Groupe9/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <p><a href="http://epfl-agentbased-2014.github.io/Cours">&lt;&lt;&lt; EPFL Semaine ENAC - Modèles Basés-Agents</a></p>
 
 <p><strong>Résumé</strong></p>
@@ -43,13 +46,14 @@
 Cette valeur subit l’influence des éléments mobiles qui sont deux « breeds » d’agents : - les abeilles qui augmentent la valeur « énergie »  en passant sur le patch -les puces qui diminuent l’énergie. 
 Les agents « abeilles » sont aussi affectés par le poison qui diminue leur énergie et par conséquent leur vie. Elles meurent si elles n’ont plus assez d’énergie.
 Les insectes peuvent mourir au début d’une année en fonction du taux d’insecticide.
-On observe le développement de notre modèle sur plusieurs années. Après chaque année on garde la v….. (calcul d’un an pour le prochain).bre d’abeilles », « nombre de puces » qui sont des constantes. Le paramètre sur lequel on peut jouer est la concentration en insecticide. L’insecticide abaisse l’énergie dans le champ, donc le rendement diminue. Par contre cette énergie est « protégée et conservée » parce que les puces ne peuvent plus en enlever. étant donné qu’ils sont tués toute de suite dès leur passage sur un patch pollué.
+On observe le développement de notre modèle sur plusieurs années. Après chaque année, le champs conserve en mémoire en partie son état à l'année précédente, le nombre d'abeille est réinitialiser à l'état de l'année précédente (comme si on ajoutait des abeilles chaque année), et les puces reviennent. 
+On peut jouer est la concentration en insecticide. L’insecticide abaisse l’énergie dans le champ, donc le rendement diminue.
 Dans notre modèle on ne joue alors pas sur les liens entre les agents. Donc la distance entre les agents n’a pas une influence précise ou particulière sur le rendement du champ.</p>
 
 <h1>
 <a name="objectifs-et-hypoth%C3%A8ses" class="anchor" href="#objectifs-et-hypoth%C3%A8ses"><span class="octicon octicon-link"></span></a>Objectifs et hypothèses</h1>
 
-<p>On cherche donc la concentration d’insecticide optimale pour ne pas tuer trop d’abeilles mais éliminer assez de puces. Notre modèle travaille avec des éléments fixes qui sont des patches, auxquelles on attribue une valeur de gain. On observe le développement de notre modèle sur plusieurs années pour obtenir un rendement moyen. Le rendement est calculé comme la moyenne des gains totaux des 5 années précédentes.
+<p>On cherchela concentration d’insecticide optimale pour ne pas tuer trop d’abeilles mais éliminer assez de puces. Notre modèle travaille avec des éléments fixes qui sont des cases-champs, auxquelles on attribue une valeur de gain. On observe le développement de notre modèle sur plusieurs années pour obtenir un rendement moyen. Celui-ci est calculé comme la moyenne des gains totaux des 5 années précédentes.
 Cette valeur subit l’influence des éléments mobiles qui sont deux « breeds » d’agents :</p>
 
 <ul>
@@ -63,7 +67,7 @@ Dans notre modèle on ne travaille pas les liens entre les agents. La distance e
 <h1>
 <a name="m%C3%A9thodes-et-proc%C3%A9dures" class="anchor" href="#m%C3%A9thodes-et-proc%C3%A9dures"><span class="octicon octicon-link"></span></a>Méthodes et procédures</h1>
 
-<p>On démarre la simulation avec l’hypothèse qu’il y a le même nombre d’abeilles et de pucerons, mais les pucerons sont plus sensibles au poison.</p>
+<p>On démarre la simulation avec l’hypothèse qu’il y a le même nombre d’abeilles et de pucerons. Les pucerons sont plus sensibles au poison.</p>
 
 <p>Quand on met un grande quantité de poison tous les pucerons meurent tandis que les abeilles continuent de polliniser, ce qui augmentent fortement le rendement.</p>
 
@@ -72,23 +76,26 @@ Dans notre modèle on ne travaille pas les liens entre les agents. La distance e
 <h1>
 <a name="r%C3%A9sultats" class="anchor" href="#r%C3%A9sultats"><span class="octicon octicon-link"></span></a>Résultats</h1>
 
-<p>Ce qu’on a premièrement pu constater avec ce modèle, c’est qu’il dépend fortement de la quantité d’insecticide répandu sur le terrain, car plus on met de poison, plus le rendement sera grand. Donc on comprendre  bien maintenant comment les entreprises “captialistes“ agricoles fonctionnent et à quoi elles doivent faire face.</p>
-
-<p>Par contre on peut observer un maximum local quand on a un pourcentage de seulement 15% de poison, pour un rendement inférieur de 20% au rendement maximal possible.</p>
-
 <p><img src="https://raw.githubusercontent.com/EPFL-AgentBased-2014/Groupe9/master/Graphe-gain-poison.jpg" alt=""></p>
+
+<p>On a premièrement pu constater avec ce modèle que le rendement dépend de la quantité d’insecticide épandu. Notre modèle basé sur un effet des abeilles plus élevé que l'effet négatif des pucerons tend à montrer qu'un épandage maximal sera le plus bénéfique. Par contre, la progression du rendement n'est pas linéaire. On pourra imaginer une politique qui limite la quantité d'insecticide. Dès lors, le modèle sera pertinent pour déterminer le rendement optimal. On observe un maximum local pour une quantité de 15% de poison ceci donnant un rendement inférieur de 20% au rendement maximal possible.</p>
 
 <h1>
 <a name="discussion-et-conclusion" class="anchor" href="#discussion-et-conclusion"><span class="octicon octicon-link"></span></a>Discussion et conclusion</h1>
 
 <p>On constate que le nombre de possibilité est donc limité avec les insecticides. Un prochain axe de recherche envisageable serait donc une recherche spatiale de répartition de l’insecticide et l’ajout artificiel d’une ruche au centre du territoire. Cela pourrait peut-être modifier le rendement du champs.</p>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/EPFL-AgentBased-2014">EPFL-AgentBased-2014</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Groupe 9 maintained by <a href="https://github.com/EPFL-AgentBased-2014">EPFL-AgentBased-2014</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
     
+
   </body>
 </html>
