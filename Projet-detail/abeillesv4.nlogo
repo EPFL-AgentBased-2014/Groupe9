@@ -4,17 +4,13 @@ to setup
   clear-all
   
   set-default-shape turtles "bee" ; change la forme des turtles en abeilles
-
-  create-turtles number-of-bees
-
-
-  [ set size 0.8] ; on réduit un peu la taille des abeilles
-  layout-circle turtles 1 ; juste pour mettre toutes les abeilles au centre 
+  create-turtles number-of-bees [setxy random-xcor random-ycor set size 0.8] ; on réduit un peu la taille des abeilles
+  ;set-default-shape turtles "bug"
+   ;create-turtles number-of-bees [setxy random-xcor random-ycor set size 0.8] ; on réduit un peu la taille des abeilles
+ ask patches [
+   set pcolor couleurbase
+ ]
  
-  ask patches [
-    set pcolor couleurbase ; les champs reprennent leur état initial
-  ]
-  
   reset-ticks ; compteur d'iterations a 0
   
 end
@@ -24,17 +20,21 @@ to go
   move-bug
  
 if (ticks = Temps-d-une-annee) [
-  ask patches [
-    if pcolor = 15  
-      [set pcolor couleurbase]
-    set pcolor couleurbase -(couleurbase - pcolor) * 0.5 ; les champs reprennent leur état initial
+   ask patches [
+    if not (pcolor = 15)
+    [
+      if not (pcolor = 67) [
+    set pcolor couleurbase -(couleurbase - pcolor) * 0.5; les champs reprennent leur état initial
+      ]
+  ;    if (pcolor = couleurbase )[
+   ; set pcolor couleurbase + 1
+    ;  ]
+    ]
   ]
+
   clear-turtles
-  create-turtles number-of-bees ; réduire le nombre d'abeilles au bout de chaque année
-  
-  ask turtles [
-   layout-circle turtles 1 ; juste pour mettre toutes les abeilles au centre 
-  ]
+  create-turtles number-of-bees; réduire le nombre d'abeilles au bout de chaque année
+[setxy random-xcor random-ycor ]
   reset-ticks
 ]
 end
@@ -191,7 +191,7 @@ Temps-d-une-annee
 Temps-d-une-annee
 0
 100
-100
+21
 1
 1
 mois
@@ -206,7 +206,7 @@ number-of-bees
 number-of-bees
 0
 500
-50
+230
 10
 1
 NIL
@@ -264,28 +264,6 @@ x pour 1000
 0.0
 1
 
-PLOT
-753
-347
-1402
-638
-plot 1
-NIL
-NIL
-0.0
-10.0
-0.0
-10.0
-true
-false
-"" ""
-PENS
-"default" 1.0 0 -15575016 true "" "plot count patches with [pcolor = 62]"
-"pen-1" 1.0 0 -15040220 true "" "plot count patches with [pcolor = 63]"
-"pen-2" 1.0 0 -14439633 true "" "plot count patches with [pcolor = 64]"
-"pen-3" 1.0 0 -13840069 true "" "plot count patches with [pcolor = 65]"
-"pen-4" 1.0 0 -11085214 true "" "plot count patches with [pcolor = 66]"
-
 MONITOR
 806
 16
@@ -296,6 +274,24 @@ count turtles
 17
 1
 11
+
+PLOT
+922
+10
+1122
+160
+abeille
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot count turtles"
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -669,6 +665,25 @@ NetLogo 5.0.5
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
+<experiments>
+  <experiment name="experiment" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <metric>count turtles</metric>
+    <enumeratedValueSet variable="bug-reproduce">
+      <value value="8"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="Temps-d-une-annee">
+      <value value="48"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-bees">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="couleurbase">
+      <value value="67"/>
+    </enumeratedValueSet>
+  </experiment>
+</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
