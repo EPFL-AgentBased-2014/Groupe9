@@ -300,7 +300,7 @@ Temps-d-une-annee
 Temps-d-une-annee
 0
 50
-50
+48
 1
 1
 mois
@@ -315,7 +315,7 @@ number-of-bees
 number-of-bees
 0
 500
-180
+50
 10
 1
 NIL
@@ -357,7 +357,7 @@ bug-reproduce
 bug-reproduce
 0
 10
-1
+7
 1
 1
 NIL
@@ -849,14 +849,16 @@ NetLogo 5.0.5
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="experiment" repetitions="200" runMetricsEveryStep="false">
+  <experiment name="experiment" repetitions="10" runMetricsEveryStep="false">
     <setup>setup</setup>
     <go>go</go>
-    <timeLimit steps="100"/>
+    <timeLimit steps="500"/>
     <metric>count bees</metric>
     <metric>count bugs</metric>
-    <metric>report rendement</metric>
-    <steppedValueSet variable="bug-reproduce" first="5" step="1" last="9"/>
+    <metric>rendement</metric>
+    <enumeratedValueSet variable="bug-reproduce">
+      <value value="7"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="Temps-d-une-annee">
       <value value="48"/>
     </enumeratedValueSet>
@@ -866,6 +868,7 @@ NetLogo 5.0.5
     <enumeratedValueSet variable="couleurbase">
       <value value="67"/>
     </enumeratedValueSet>
+    <steppedValueSet variable="poison-diffuse" first="1" step="5" last="100"/>
   </experiment>
 </experiments>
 @#$#@#$#@
