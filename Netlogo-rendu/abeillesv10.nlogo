@@ -175,10 +175,10 @@ to reproducebug  ; turtle procedure; dans une année complète les abeilles/inse
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-235
-15
-709
-510
+240
+30
+714
+525
 20
 20
 11.33333333333334
@@ -202,10 +202,10 @@ ticks
 30.0
 
 BUTTON
-17
-20
-81
-53
+15
+33
+79
+66
 Setup
 setup
 NIL
@@ -219,10 +219,10 @@ NIL
 1
 
 INPUTBOX
-928
-493
-1083
-553
+937
+10
+1092
+70
 couleurbase
 67
 1
@@ -230,10 +230,10 @@ couleurbase
 Color
 
 BUTTON
-90
+163
+33
+226
 66
-153
-99
 Go
 go
 T
@@ -247,10 +247,10 @@ NIL
 1
 
 BUTTON
-17
+90
+33
+153
 66
-80
-99
 Go
 go
 NIL
@@ -272,7 +272,7 @@ Temps-d-une-annee
 Temps-d-une-annee
 0
 50
-20
+25
 1
 1
 mois
@@ -287,17 +287,17 @@ number-of-bees
 number-of-bees
 0
 500
-180
+50
 10
 1
 NIL
 HORIZONTAL
 
 BUTTON
-13
-333
-80
-366
+3
+479
+70
+524
 Poison
 poison
 T
@@ -311,10 +311,10 @@ NIL
 1
 
 TEXTBOX
-91
-333
-241
-389
+6
+422
+233
+466
 Vous pouvez liberer du poison sur une case qui tuera les insectes et qui fera mal aux abeilles. \n
 11
 0.0
@@ -329,38 +329,28 @@ bug-reproduce
 bug-reproduce
 0
 10
-1
+7
 1
 1
 NIL
 HORIZONTAL
 
-TEXTBOX
-153
-241
-220
-274
-x pour 1000
-11
-0.0
-1
-
 MONITOR
-763
-21
-823
-66
-Bees
+734
+25
+808
+70
+Abeilles
 count bees
 17
 1
 11
 
 PLOT
-830
-21
-1083
-141
+734
+81
+1095
+225
 Nombre abeilles et insectes
 NIL
 NIL
@@ -376,10 +366,10 @@ PENS
 "Insectes" 1.0 0 -955883 true "" "plot count bugs"
 
 PLOT
-772
-175
-1133
-321
+734
+232
+1095
+374
 Gain total chaque année
 NIL
 NIL
@@ -394,10 +384,10 @@ PENS
 "default" 1.0 0 -16777216 true "" ""
 
 PLOT
-773
-330
-1133
-480
+734
+383
+1096
+525
 Rendement
 NIL
 NIL
@@ -412,10 +402,10 @@ PENS
 "default" 1.0 0 -16777216 true "" ";plot rendement"
 
 MONITOR
-764
-78
-824
-123
+837
+25
+911
+70
 Insectes
 count bugs
 17
@@ -423,25 +413,25 @@ count bugs
 11
 
 SLIDER
-24
-282
-223
-315
+15
+250
+215
+283
 Poison-diffuse
 Poison-diffuse
 0
 100
-1
+8
 1
 1
 NIL
 HORIZONTAL
 
 BUTTON
-6
-372
-90
-406
+74
+479
+158
+524
 Reset poison
 ask patches with [pcolor = 15] [set pcolor 67]
 NIL
@@ -455,11 +445,11 @@ NIL
 1
 
 MONITOR
-9
-421
-98
-466
-Red patches
+162
+479
+228
+524
+Q Poison
 count patches with [pcolor = 15]
 17
 1
@@ -838,16 +828,18 @@ NetLogo 5.0.5
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="experiment" repetitions="1" runMetricsEveryStep="false">
+  <experiment name="experiment" repetitions="10" runMetricsEveryStep="false">
     <setup>setup</setup>
     <go>go</go>
-    <timeLimit steps="100"/>
+    <timeLimit steps="500"/>
     <metric>count bees</metric>
     <metric>count bugs</metric>
     <metric>rendement</metric>
-    <steppedValueSet variable="bug-reproduce" first="5" step="1" last="9"/>
+    <enumeratedValueSet variable="bug-reproduce">
+      <value value="7"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="Temps-d-une-annee">
-      <value value="48"/>
+      <value value="25"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-bees">
       <value value="50"/>
@@ -855,6 +847,7 @@ NetLogo 5.0.5
     <enumeratedValueSet variable="couleurbase">
       <value value="67"/>
     </enumeratedValueSet>
+    <steppedValueSet variable="poison-diffuse" first="1" step="5" last="100"/>
   </experiment>
 </experiments>
 @#$#@#$#@

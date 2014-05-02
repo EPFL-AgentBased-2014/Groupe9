@@ -204,9 +204,9 @@ end
 @#$#@#$#@
 GRAPHICS-WINDOW
 235
-15
+27
 709
-510
+522
 20
 20
 11.33333333333334
@@ -247,10 +247,10 @@ NIL
 1
 
 INPUTBOX
-928
-493
-1083
-553
+926
+10
+1081
+70
 couleurbase
 67
 1
@@ -258,10 +258,10 @@ couleurbase
 Color
 
 BUTTON
-90
-66
-153
-99
+161
+20
+224
+53
 Go
 go
 T
@@ -275,10 +275,10 @@ NIL
 1
 
 BUTTON
-17
-66
-80
-99
+88
+20
+151
+53
 Go
 go
 NIL
@@ -300,7 +300,7 @@ Temps-d-une-annee
 Temps-d-une-annee
 0
 50
-48
+47
 1
 1
 mois
@@ -338,16 +338,6 @@ NIL
 NIL
 1
 
-TEXTBOX
-91
-333
-241
-389
-Vous pouvez liberer du poison sur une case qui tuera les insectes et qui fera mal aux abeilles. \n
-11
-0.0
-1
-
 SLIDER
 15
 208
@@ -363,20 +353,10 @@ bug-reproduce
 NIL
 HORIZONTAL
 
-TEXTBOX
-153
-241
-220
-274
-x pour 1000
-11
-0.0
-1
-
 MONITOR
-763
+723
 21
-823
+798
 66
 Bees
 count bees
@@ -385,10 +365,10 @@ count bees
 11
 
 PLOT
-830
-21
-1083
-141
+723
+82
+1084
+221
 Nombre abeilles et insectes
 NIL
 NIL
@@ -404,10 +384,10 @@ PENS
 "Insectes" 1.0 0 -955883 true "" "plot count bugs"
 
 PLOT
-772
-175
-1133
-321
+724
+229
+1085
+375
 Gain total chaque année
 NIL
 NIL
@@ -422,10 +402,10 @@ PENS
 "default" 1.0 0 -16777216 true "" ""
 
 PLOT
-773
-330
-1133
-480
+725
+384
+1085
+522
 Rendement
 NIL
 NIL
@@ -440,10 +420,10 @@ PENS
 "default" 1.0 0 -16777216 true "" ";plot rendement"
 
 MONITOR
-764
-78
-824
-123
+823
+21
+897
+66
 Insectes
 count bugs
 17
@@ -451,30 +431,19 @@ count bugs
 11
 
 SLIDER
-24
-282
-223
-315
+16
+248
+214
+281
 Poison-diffuse
 Poison-diffuse
 0
 100
-0
+100
 1
 1
 NIL
 HORIZONTAL
-
-MONITOR
-9
-421
-98
-466
-Red patches
-count patches with [pcolor = 15]
-17
-1
-11
 
 @#$#@#$#@
 ## WHAT IS IT? Qu'est ce que ce modèle ?
