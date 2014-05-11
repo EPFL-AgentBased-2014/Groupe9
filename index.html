@@ -37,18 +37,31 @@
 
 <p>Ce modèle porte sur l’étude d’un insecticide répandu sur un champ parcouru par des abeilles et des pucerons. Le développement de notre simulation se déroule sur plusieurs années.
 La recherche se focalise sur la concentration d’insecticide optimale afin de ne pas tuer trop d’abeilles tout en éliminant assez de pucerons.
-Ce modèle démontre donc que, lorsqu'une quantité maximale de poison est insérée, tous les pucerons meurent tandis que les abeilles continuent de polliniser, bien que celles-ci soient aussi affectées par le poison au bout d'un temps donné.
+Ce modèle par sur le principe que lorsqu'une quantité maximale de poison est insérée, tous les pucerons meurent tandis que les abeilles continuent de polliniser, bien que celles-ci soient aussi affectées par le poison au bout d'un temps donné.
 Nos simulations tendent à montrer qu'un épandage maximal sera plus bénéfique.
 Nous pourrions imaginer une procédure qui limite la quantité d'insecticide épandu dans un champ. Dès lors, le modèle serait plus pertinent pour déterminer un gain moyen optimal.</p>
 
 <h1>
 <a name="introduction--int%C3%A9r%C3%AAt-de-la-recherche" class="anchor" href="#introduction--int%C3%A9r%C3%AAt-de-la-recherche"><span class="octicon octicon-link"></span></a>Introduction / Intérêt de la recherche</h1>
 
-<p>Ce modèle étudie l’influence d’un insecticide sur le gain d'une récolte d'un champ parcouru par des abeilles et des pucerons. Les abeilles sont les actrices majeures permettant la pollinisation des fleurs qui sont en revanche détruites par des pucerons. Pour cela on utilise de l'insecticide. Ce produit chimique a une influence néfaste sur les abeilles et par conséquent aussi sur les récoltes.</p>
-
-<p>Le développement de notre simulation se déroule sur plusieurs années. Après chaque année, le champ conserve en mémoire une partie de son état de l'année précédente, le nombre d'abeilles et d'insectes est alors réinitialisé à un nombre prédéfini.</p>
+<p>Aujourd'hui de nombreuses questions se posent quant à la pollinisation de nos champs. La demande en abeille pollinisatrice augmente bien plus rapidement que l'offre comme le démontre une récente étude  sur le sujet (<a href="http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0082996">Agricultural Policies Exacerbate Honeybee Pollination Service Supply-Demand Mismatches Across Europe</a>). 
+Les abeilles sont les actrices majeures permettant la pollinisation des fleurs. Pourtant, les insecticides, utilisés systématiquement, finissent par les rendre de plus en plus vulnérables. Ces produits chimiques sont pourtant utiles pour éradiquer les insectes.  Nous avons voulu comprendre, en élaborant se modèle simple, le lien entre production, insecticide, insectes et abeilles. Notre recherche porte sur la quantité de poison optimale à épandre. </p>
 
 <h1>
+<a name="%C3%89l%C3%A9ments-et-param%C3%A8tres" class="anchor" href="#%C3%89l%C3%A9ments-et-param%C3%A8tres"><span class="octicon octicon-link"></span></a>Éléments et paramètres</h1>
+
+<p>Éléments:</p>
+
+<ul>
+<li>champs (à maturité variable)</li>
+<li>abeilles</li>
+<li>insectes
+(la proportion abeille/insecte est supposée toujours identique avant épandage)
+Paramètres:</li>
+<li>"temps" d'une année</li>
+<li>quantité de poison</li>
+<li>reproduction intra-année des abeilles/insectes</li>
+</ul><h1>
 <a name="objectifs-et-hypoth%C3%A8ses" class="anchor" href="#objectifs-et-hypoth%C3%A8ses"><span class="octicon octicon-link"></span></a>Objectifs et hypothèses</h1>
 
 <p>Nous recherchons la concentration d’insecticide optimale pour ne pas tuer trop d’abeilles tout en éliminant assez de pucerons. </p>
@@ -66,6 +79,8 @@ Une certaine proportion de pucerons meurt à chaque début d’année en fonctio
 
 <h1>
 <a name="m%C3%A9thodes-et-proc%C3%A9dures" class="anchor" href="#m%C3%A9thodes-et-proc%C3%A9dures"><span class="octicon octicon-link"></span></a>Méthodes et procédures</h1>
+
+<p>Le développement de notre simulation se déroule sur plusieurs années. Après chaque année, le champ conserve en mémoire une partie de son état de l'année précédente, le nombre d'abeilles et d'insectes est alors réinitialisé à un nombre prédéfini.</p>
 
 <p>Nous démarrons la simulation avec l’hypothèse qu’il y a le même nombre d’abeilles et de pucerons. Les pucerons sont plus sensibles à l'insecticide.</p>
 
@@ -109,6 +124,9 @@ Un prochain axe de recherche envisageable serait celui d'une répartition périp
 
 <p>Nous observons dans ce graphique, que la répartition spatiale est plus favorable aux abeilles. En revanche ce modèle empêche les pucerons d'atteindre la ruche, le poison représente ici une barrière infranchissable.
 Il faudrait continuer d'agrémenter ce modèle en implémentant une résistance à l'insecticide de la part des abeilles et des pucerons.</p>
+
+<p>Pour conclure, cette recherche nous a permis de mieux comprendre la relation insecte-insecticide-abeille. Nous avons démontrer que l'épandage total n'est pas toujours la solution optimale. En outre, dans une recherche de progrès durable nous avons observer qu'une quantité limité d'insecticide pouvait 
+allier limitation de la destruction des colonies d'abeilles et gain proche (mais inférieur) de celui obtenu lors de l'épandage total.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/EPFL-AgentBased-2014">EPFL-AgentBased-2014</a></p>
